@@ -14,16 +14,25 @@ module.exports = function(RED) {
                           ];
         RED.nodes.createNode(this,config);
         var node = this;
+        this.color = config.color;
+
+        node.status({text: 'Offline', fill: 'red', shape: 'dot'});
+
         var noble = require('noble');
 
-        this.color = config.color;
-        this.log(noble);
-        node.status({text: 'Offline', fill: 'red', shape: 'dot'});
+        function startScan() {
+          node.status({text: 'Scanning', fill: 'green', shape: 'dot'});
+          noble.startScanning(serviceUUIDs, true);
+        }
+
+        this.on('close', function(){
+          noble.stopScanning();
+          noble.removeAllListeners();
+        });
 
         noble.on('stateChange', function(state) {
             if (state === 'poweredOn') {
-                node.status({text: 'Scanning', fill: 'green', shape: 'dot'});
-                noble.startScanning(serviceUUIDs, true);
+                startScan();
             } else {
                 noble.stopScanning();
             }
@@ -31,26 +40,18 @@ module.exports = function(RED) {
 
         noble.on('discover', function(peripheral) {
             if (peripheral.advertisement.manufacturerData) {
+                node.log(peripheral.manufacturerData.readUInt16BE(20));
                 var temp = (peripheral.advertisement.manufacturerData[20]*256+peripheral.advertisement.manufacturerData[21] - 32)/1.8;
                 var sg = (peripheral.advertisement.manufacturerData[22]*256+peripheral.advertisement.manufacturerData[23])/1000.0;
                 node.send([{payload: temp}, {payload: sg}]);
             }
         });
 
-        // Start discovery
-        // -- use either all tilt device uuids or just the selected color
-        // -- set status
-        // On discovery:
-        // -- check if discovery has data
-        // -- process data, extract SG and TEMP
-        // -- convert temp to celcius
-        // -- send messages
-        // On error:
-        // -- set status
+        if(noble.state==='poweredOn') {
+          startScan();
+        }
 
-        this.on('close', function(){
-          noble.stopScanning();
-        });
+
     }
     RED.nodes.registerType("tilt-hydrometer",TiltHydrometerNode);
 }
