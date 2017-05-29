@@ -1,0 +1,31 @@
+<script type="text/javascript">
+    RED.nodes.registerType('message-repeater',{
+        category: 'function',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:""},
+            rate: {value:1.0, validate:RED.validators.number()}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "file.png",
+        label: function() {
+            return this.name||"message-repeater";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="message-repeater">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-rate"><i class="icon-tag"></i> Rate</label>
+        <input type="text" id="node-input-rate" placeholder="1.0">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="message-repeater">
+    <p>Repeats received messages at configured rate</p>
+</script>

@@ -1,0 +1,37 @@
+<script type="text/javascript">
+    RED.nodes.registerType('temperature-control',{
+        category: 'function',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:""},
+            setPoint: {value:20.0, validate:RED.validators.number()},
+            deadBand: {value:1.0, validate:RED.validators.number()}
+        },
+        outputLabels: ["heat", "cool"],
+        inputs:1,
+        outputs:2,
+        icon: "file.png",
+        label: function() {
+            return this.name||"temperature-control";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="temperature-control">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-setPoint"><i class="icon-tag"></i> Set point</label>
+        <input type="text" id="node-input-setPoint" placeholder="20.0">
+    </div>
+    <div class="form-row">
+        <label for="node-input-deadBand"><i class="icon-tag"></i> Dead band</label>
+        <input type="text" id="node-input-deadBand" placeholder="1.0">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="temperature-control">
+    <p>A temperature controller</p>
+</script>
