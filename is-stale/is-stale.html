@@ -1,0 +1,31 @@
+<script type="text/javascript">
+    RED.nodes.registerType('is-stale',{
+        category: 'function',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:""},
+            maxAge: {value:1.0, validate:RED.validators.number()}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "file.png",
+        label: function() {
+            return this.name||"is-stale";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="is-stale">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-maxAge"><i class="icon-tag"></i> Max age</label>
+        <input type="text" id="node-input-maxAge" placeholder="1.0">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="is-stale">
+    <p>Repeats received messages at configured rate</p>
+</script>

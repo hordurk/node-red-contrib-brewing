@@ -1,0 +1,31 @@
+<script type="text/javascript">
+    RED.nodes.registerType('actuator-delay',{
+        category: 'function',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:""},
+            delay: {value:3.0, validate:RED.validators.number()}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "file.png",
+        label: function() {
+            return this.name||"actuator-delay";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="actuator-delay">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-delay"><i class="icon-tag"></i> Delay</label>
+        <input type="text" id="node-input-delay" placeholder="3.0">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="actuator-delay">
+    <p>A temperature controller</p>
+</script>

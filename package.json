@@ -1,0 +1,22 @@
+{
+  "name": "node-red-contrib-brewing",
+  "version": "1.0.0",
+  "description": "A collection of nodes useful for controlling homebrewing processes.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Hordur K Heidarsson <hordur@hordur.us>",
+  "license": "MIT",
+  "node-red": {
+    "nodes": {
+      "tilt-hydrometer": "resend/resend.js"
+    }
+  },
+  "dependencies": {
+    "noble": "^1.8.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hordurk/node-red-contrib-brewing"
+  }
+}
