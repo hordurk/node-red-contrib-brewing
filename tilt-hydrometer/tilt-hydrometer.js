@@ -1,5 +1,3 @@
-var noble = require('noble');
-
 module.exports = function(RED) {
     function TiltHydrometerNode(config) {
 
@@ -16,9 +14,10 @@ module.exports = function(RED) {
                           ];
         RED.nodes.createNode(this,config);
         var node = this;
+        var noble = require('noble');
 
         this.color = config.color;
-
+        this.log(noble);
         node.status({text: 'Offline', fill: 'red', shape: 'dot'});
 
         noble.on('stateChange', function(state) {
