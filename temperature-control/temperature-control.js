@@ -40,8 +40,8 @@ module.exports = function(RED) {
               node.status({text: 'Disabled', fill: 'yellow', shape: 'dot'});
             } else {
               cool = (node.meas > Number(node.setPoint) + Number(node.deadBand));
-              heat = (node.meas < Number(node.setPoint) + Number(node.deadBand));
-              node.status({text: 'e='+err+' sp='+node.setPoint, fill: 'green', shape: 'dot'});
+              heat = (node.meas < Number(node.setPoint) - Number(node.deadBand));
+              node.status({text: 'e='+err.toFixed(1)+' sp='+node.setPoint, fill: 'green', shape: 'dot'});
             }
 
 

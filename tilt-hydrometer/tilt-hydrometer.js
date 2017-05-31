@@ -40,7 +40,6 @@ module.exports = function(RED) {
 
         noble.on('discover', function(peripheral) {
             if (peripheral.advertisement.manufacturerData) {
-                node.log(peripheral.manufacturerData.readUInt16BE(20));
                 var temp = (peripheral.advertisement.manufacturerData[20]*256+peripheral.advertisement.manufacturerData[21] - 32)/1.8;
                 var sg = (peripheral.advertisement.manufacturerData[22]*256+peripheral.advertisement.manufacturerData[23])/1000.0;
                 node.send([{payload: temp}, {payload: sg}]);
