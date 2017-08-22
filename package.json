@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-brewing",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A collection of nodes useful for controlling homebrewing processes.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,7 +13,8 @@
       "is-stale": "is-stale/is-stale.js",
       "resend": "resend/resend.js",
       "temperature-control": "temperature-control/temperature-control.js",
-      "tilt-hydrometer": "tilt-hydrometer/tilt-hydrometer.js"
+      "tilt-hydrometer": "tilt-hydrometer/tilt-hydrometer.js",
+      "noble-connection": "tilt-hydrometer/noble-connection.js"
     }
   },
   "dependencies": {
